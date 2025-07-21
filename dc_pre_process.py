@@ -40,7 +40,6 @@ pcArquivo = pd.read_csv('pc04.csv')
 print("Arquivo 'pc04.csv' carregado")
 
 pcProcessado = pcArquivo.drop_duplicates(subset=['codigo'], keep='last')
-pcProcessado.dropna(inplace=True)
 print("\nRegistros duplicados e com valores ausentes removidos")
 
 #valores_invalidos = ['?', 'erro']
