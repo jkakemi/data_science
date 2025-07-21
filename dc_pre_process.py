@@ -40,15 +40,11 @@ pcArquivo = pd.read_csv('pc04.csv')
 print("Arquivo 'pc04.csv' carregado")
 
 pcProcessado = pcArquivo.drop_duplicates(subset=['codigo'], keep='last')
-print("\nRegistros duplicados e com valores ausentes removidos")
+print("\nRegistros duplicados removidos")
 
-#valores_invalidos = ['?', 'erro']
 pcProcessado.replace(valoresInvalidos, np.nan, inplace=True)
 pcProcessado.dropna(inplace=True)
 print("Registros com valores ausentes ou ruidos removidos")
-
-# TESTE COM ANTES E DEPOIS
-#print("Registros com sexo 'M' e 'J' antes:", pcProcessado[pcProcessado['sexo'] == 'M'].shape[0])
 
 pcProcessado = pcProcessado[(pcProcessado['sexo'] != 'M') & (pcProcessado['sexo'] != 'J')]
 pcProcessado.drop(columns=['sexo'], inplace=True)
@@ -128,14 +124,14 @@ bccFinal.drop(columns=['IMC'], inplace=True)
 print("\n'IMC' removido")
 
 # Funcao MinMaxScaler do python para transformar o peso padronizado entre 0 e 1
-scaler_minmax = MinMaxScaler()
-bccFinal['peso'] = scaler_minmax.fit_transform(bccFinal[['peso']])
+minMax = MinMaxScaler()
+bccFinal['peso'] = minMax.fit_transform(bccFinal[['peso']])
 print("Peso padronizado")
 
 # Funcao StandardScaler para ter media 0 e desvio padrao 1 para fins
 # de padronizacao
-scaler_std = StandardScaler()
-bccFinal['altura'] = scaler_std.fit_transform(bccFinal[['altura']])
+scalerStd = StandardScaler()
+bccFinal['altura'] = scalerStd.fit_transform(bccFinal[['altura']])
 print("Altura padronizada")
 
 bccFinal.to_csv('bcc_final.csv', index=False, sep=',', float_format='%.2f')
