@@ -8,6 +8,15 @@ bcArquivo = pd.read_csv('bc04.csv')
 print("Arquivo 'bc04.csv' carregado")
 print(f"Matriz inicial: {bcArquivo.shape}")
 
+# Eliminacao de valores ausentes como 'erro' ou '?' identificados 
+# dropna (NaN Not a Number), para remover esses valores. Uso de um array com 
+# os  valores ausentes identificados
+valoresInvalidos = ['?', 'erro']
+bcArquivo.replace(valoresInvalidos, np.nan, inplace=True)
+# depois de convertido em NaN, possui uma funcao para remover eles
+bcArquivo.dropna(inplace=True)
+print("Registros com valores ausentes ou ruidos removidos")
+
 # DROP nas colunas irrelevantes
 bcProcessado = bcArquivo.drop(columns=['inv-nodes', 'node-caps', 'irradiat'])
 print("\nColunas 'inv-nodes', 'node-caps', 'irradiat' irrelevantes removidas")
@@ -19,19 +28,10 @@ print("Registros duplicados removidos, mantendo apenas o mais recente")
 bcProcessado = bcProcessado.rename(columns={'pacient': 'codigo'})
 print("Renomeou pacient para 'codigo'")
 
-# Eliminacao de valores ausentes como 'erro' ou '?' identificados 
-# dropna (NaN Not a Number), para remover esses valores. Uso de um array com 
-# os  valores ausentes identificads
-valoresInvalidos = ['?', 'erro']
-bcProcessado.replace(valoresInvalidos, np.nan, inplace=True)
-# depois de convertido em NaN, possui uma funcao para remover eles
-bcProcessado.dropna(inplace=True)
-print("Registros com valores ausentes ou ruidos removidos")
-
 # Salvando o arquivo pre-processado
 bcProcessado.to_csv('bc_preprocessed.csv', index=False)
 print("\nArquivo 'bc_preprocessed.csv' gerado")
-print(f"Tamanho final da matriz: {bcProcessado.shape}\n")
+print(f"Tamanho final da matriz: {bcProcessado.shape[0]}\n")
 print(bcProcessado.head())
 
 print("\n--- Pre-processamento de pc04.csv ---")
