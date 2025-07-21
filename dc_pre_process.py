@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
-print("--- Pré-processamento de bc04.csv ---")
+print("--- Pre-processamento de bc04.csv ---")
 
 bcArquivo = pd.read_csv('bc04.csv')
 print("Arquivo 'bc04.csv' carregado")
@@ -26,7 +26,7 @@ valoresInvalidos = ['?', 'erro']
 bcProcessado.replace(valoresInvalidos, np.nan, inplace=True)
 # depois de convertido em NaN, possui uma funcao para remover eles
 bcProcessado.dropna(inplace=True)
-print("Registros com valores ausentes ou ruídos removidos")
+print("Registros com valores ausentes ou ruidos removidos")
 
 # Salvando o arquivo pre-processado
 bcProcessado.to_csv('bc_preprocessed.csv', index=False)
@@ -34,7 +34,7 @@ print("\nArquivo 'bc_preprocessed.csv' gerado")
 print(f"Tamanho final da matriz: {bcProcessado.shape}\n")
 print(bcProcessado.head())
 
-print("\n--- Pré-processamento de pc04.csv ---")
+print("\n--- Pre-processamento de pc04.csv ---")
 
 pcArquivo = pd.read_csv('pc04.csv')
 print("Arquivo 'pc04.csv' carregado")
@@ -46,7 +46,7 @@ print("\nRegistros duplicados e com valores ausentes removidos")
 #valores_invalidos = ['?', 'erro']
 pcProcessado.replace(valoresInvalidos, np.nan, inplace=True)
 pcProcessado.dropna(inplace=True)
-print("Registros com valores ausentes ou ruídos removidos")
+print("Registros com valores ausentes ou ruidos removidos")
 
 # TESTE COM ANTES E DEPOIS
 #print("Registros com sexo 'M' e 'J' antes:", pcProcessado[pcProcessado['sexo'] == 'M'].shape[0])
@@ -88,7 +88,7 @@ print("\nArquivo 'pc_preprocessed.csv' gerado")
 
 print(pcProcessado.shape[0])
 
-print("\n--- Primeira Integralização (bcc_parcial.csv) ---")
+print("\n--- Primeira Integralizacao (bcc_parcial.csv) ---")
 
 bcFinal = pd.read_csv('bc_preprocessed.csv')
 pcFinal = pd.read_csv('pc_preprocessed.csv')
@@ -119,7 +119,7 @@ print("\nArquivo 'bcc_parcial.csv' gerado")
 print(f"Formato: {bccParcial.shape}\n")
 print(bccParcial.head())
 
-print("\n--- Finalização e Transformação Numérica (bcc_final.csv) ---")
+print("\n--- Finalizacao e Transformacao Numerica (bcc_final.csv) ---")
 
 bccFinal = pd.read_csv('bcc_parcial.csv')
 print("Arquivo 'bcc_parcial.csv' carregado")
