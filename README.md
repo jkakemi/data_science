@@ -27,10 +27,8 @@ This project contains a complete preprocessing pipeline for two clinical dataset
 - Replace invalid values (`'?'`, `'erro'`) with `NaN` and drop them.
 - Remove rows where `sexo` is `'M'` or `'J'`; drop the column.
 - Normalize and convert `peso` and `altura` to numeric format.
-- Calculate BMI (`IMC`) using:  
-  \[
-  \text{IMC} = \frac{\text{peso}}{(\text{altura}/100)^2}
-  \]
+- Calculate BMI (`IMC`) using:
+  IMC = peso / (altura / 100)²
 - Categorize BMI into ranges → `IMC_cat`:
   - A: < 18.5
   - N: 18.5 - 25
